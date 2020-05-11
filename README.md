@@ -37,15 +37,15 @@ BadDNS 是一款使用 Rust 开发的使用公共 DNS 服务器进行多层子�
 
 - 使用默认配置
 
-    `./baddns -t target.txt`
+    `./baddns -t target.txt -s domaindict-170W.txt -d depthdict.txt`
 
 - 配置8个线程和结果保存至 `baddns-outputs-8.json`
 
-    `./baddns -t target.txt -w 8 -o baddns-outputs-8.json`
+    `./baddns -t target.txt -w 8 -o baddns-outputs-8.json -s domaindict-170W.txt -d depthdict.txt`
 
 - 配置二级子域深度探测
 
-    `./baddns -t target.txt -l 2`
+    `./baddns -t target.txt -s domaindict-170W.txt -d depthdict.txt -l 2`
 
 ### 推荐运行环境（防止各种诡异bug ^_^）
 
@@ -54,5 +54,9 @@ BadDNS 是一款使用 Rust 开发的使用公共 DNS 服务器进行多层子�
 - 推荐配置**8核16GB及以上内存**
 - 推荐使用无限制带宽的VPS供应商
 - 需要配置Linux调优执行 `ulimit -n 655350`
+
+### 源码开放时间
+
+**2020年6月1号**
 
 [BadDNS example](https://youtu.be/OU0Sq7zt_iI)
