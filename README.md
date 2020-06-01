@@ -55,7 +55,7 @@ BadDNS 是一款使用 Rust 开发的使用公共 DNS 服务器进行多层子�
 - 推荐使用无限制带宽的VPS供应商
 - 需要配置Linux调优执行 `ulimit -n 655350`
 
-### 演示视屏
+### 演示视频
 [BadDNS example](https://youtu.be/OU0Sq7zt_iI)
 
 ### 源码编译
