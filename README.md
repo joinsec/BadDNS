@@ -50,13 +50,45 @@ BadDNS 是一款使用 Rust 开发的使用公共 DNS 服务器进行多层子�
 ### 推荐运行环境（防止各种诡异bug ^_^）
 
 - 该版本支持 `Linux X64-86` 平台
-- 入门配置**2核4GB内存**
+- 入门配置**1核2GB内存**
 - 推荐配置**8核16GB及以上内存**
 - 推荐使用无限制带宽的VPS供应商
 - 需要配置Linux调优执行 `ulimit -n 655350`
 
-### 源码开放时间
-
-**2020年6月1号**
-
+### 演示视屏
 [BadDNS example](https://youtu.be/OU0Sq7zt_iI)
+
+### 源码编译
+
+1. 安装Rust并配置交叉编译环境
+
+    - 安装Rust 
+    
+        `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+    
+    - 安装`Linux-x86_64`工具链
+    
+        `rustup target add x86_64-unknown-linux-musl`
+  
+   可参见[官方教程](https://www.rust-lang.org/learn/get-started)
+
+2. 编译
+    
+    - git clone 源码
+  
+        `git clone https://github.com/joinsec/BadDNS.git`
+     
+    - 进入项目目录执行编译命令
+    
+      - 交叉编译
+        
+        `cargo build --target x86_64-unknown-linux-musl --release`
+        
+      - 普通编译
+      
+        `cargo build --release`
+    
+    - 可执行文件位于`target`目录下
+
+        
+    
