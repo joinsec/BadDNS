@@ -22,7 +22,7 @@ pub struct Config {
 impl Config {
     pub fn new() -> Self {
         let matches = App::new("BadDNS")
-            .version("1.0.0")
+            .version("1.0.1")
             .author("Link <link.messagebox@gmail.com>")
             .about("Subdomain detection system")
             .arg(Arg::with_name("target")

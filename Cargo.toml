@@ -1,6 +1,6 @@
 [package]
 name = "baddns"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["Link <link.messagebox@gmail.com>"]
 edition = "2018"
 
