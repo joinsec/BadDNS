@@ -37,6 +37,25 @@ pub fn check_event(check_recv: Receiver<QueueMessage>,
                             error!("[check_handler] send Statue::Check");
                         }
                     };
+                    
+                    // Add: 
+                    // Subdomain generation is required regardless of
+                    // whether the primary domain has a result or the result is whitelist
+
+                    if item.depth.eq(&0) {
+                        let items = GenItem {
+                            depth: item.depth +1,
+                            domain: item.subdomain.to_owned(),
+                        };
+
+                        // send gen_send
+                        match gen_send.send(QueueMessage::Gen(items)) {
+                            Ok(_) => {}
+                            Err(_) => {
+                                error!("[check_handler] send gen_send");
+                            }
+                        }
+                    };
 
                     // check collect is None or vec list
                     if check_collect(&item.collect) {
@@ -45,24 +64,11 @@ pub fn check_event(check_recv: Receiver<QueueMessage>,
                         // check item depth
                         if item.depth.eq(&0) {
                             let t  = gen_result(&item.subdomain, &collect);
-                            let items = GenItem {
-                                depth: item.depth +1,
-                                domain: item.subdomain.to_owned(),
-                            };
-
+                            
                             match result_send.send(t) {
                                 Ok(_) => {statistical_send.send(Statue::Writes).unwrap();}
                                 Err(_) => {
                                     error!("[check_handler] send Statue::Writes");
-                                }
-                            }
-                            // send gen_send
-                            match gen_send.send(QueueMessage::Gen(items)) {
-                                Ok(_) => {
-                                    drop(item)
-                                }
-                                Err(_) => {
-                                    error!("[check_handler] send gen_send");
                                 }
                             }
                         } else {
